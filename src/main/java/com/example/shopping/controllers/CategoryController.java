@@ -18,7 +18,7 @@ import com.example.shopping.models.Category;
 import com.example.shopping.services.CategoryService;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping("api/v1/categories")
 public class CategoryController {
   @Autowired
   private CategoryService categoryService;

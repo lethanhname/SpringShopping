@@ -18,7 +18,7 @@ import com.example.shopping.services.CategoryService;
 import com.example.shopping.services.ProductService;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("api/v1/products")
 public class ProductController {
 
   @Autowired

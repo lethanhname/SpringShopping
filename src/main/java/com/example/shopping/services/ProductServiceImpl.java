@@ -21,11 +21,8 @@ public class ProductServiceImpl implements ProductService{
 
   @Override
   public Product findById(Long id) throws ProductNotFoundException {
-    var product = productRepository.findById(id);
-    if (product.isPresent())
-			return product.get();
-		else
-			throw new ProductNotFoundException();
+    var product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException());
+    return product;
   }
   
 }
