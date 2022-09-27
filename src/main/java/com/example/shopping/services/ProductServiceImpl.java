@@ -3,6 +3,7 @@ package com.example.shopping.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.shopping.exception.ProductNotFoundException;
 import com.example.shopping.models.Product;
 import com.example.shopping.repositories.ProductRepository;
 
@@ -19,8 +20,12 @@ public class ProductServiceImpl implements ProductService{
   }
 
   @Override
-  public Product findById(Long id) {
-    return productRepository.findById(id).get();
+  public Product findById(Long id) throws ProductNotFoundException {
+    var product = productRepository.findById(id);
+    if (product.isPresent())
+			return product.get();
+		else
+			throw new ProductNotFoundException();
   }
   
 }

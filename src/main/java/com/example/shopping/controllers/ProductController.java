@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.shopping.exception.ProductNotFoundException;
 import com.example.shopping.models.Product;
 import com.example.shopping.services.CategoryService;
 import com.example.shopping.services.ProductService;
@@ -35,7 +36,7 @@ public class ProductController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Product> findById(@PathVariable Long id) {
+  public ResponseEntity<Product> findById(@PathVariable Long id) throws ProductNotFoundException {
     var prod = productService.findById(id);
     return ResponseEntity.ok(prod) ;
   }
