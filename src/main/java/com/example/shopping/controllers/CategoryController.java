@@ -22,13 +22,13 @@ public class CategoryController {
   @Autowired
   private CategoryService categoryService;
 
-  @PostMapping("/add")
+  @PostMapping()
   public ResponseEntity<Category> add(@RequestBody @Valid Category category) {
     var newCat = categoryService.save(category);
     return new ResponseEntity<>(newCat, HttpStatus.CREATED) ;
   }
 
-  @GetMapping("")
+  @GetMapping()
   public ResponseEntity<List<Category>> findByName() {
     var cats = categoryService.findAll();
     return ResponseEntity.ok(cats) ;
