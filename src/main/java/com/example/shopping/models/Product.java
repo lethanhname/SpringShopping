@@ -44,10 +44,10 @@ public class Product {
     private Double price;
 
     @Column(nullable = false)
-    private Integer quantity;
+    private Integer quantity = 0;
 
     @Column(nullable = false)
-    private Float discount;
+    private Float discount = 0.0f;
 
     private ProductStatus status;
 
