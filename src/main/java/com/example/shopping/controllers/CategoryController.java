@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.shopping.models.Category;
+import com.example.shopping.entities.Category;
 import com.example.shopping.services.CategoryService;
 
 @RestController

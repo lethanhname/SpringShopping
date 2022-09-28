@@ -1,4 +1,4 @@
-package com.example.shopping.models;
+package com.example.shopping.entities;
 import java.util.Date;
 import java.util.Set;
 
@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
@@ -37,7 +38,7 @@ public class Category {
     private Long id;
 
     @Column(length = 50, unique = true, columnDefinition = "nvarchar(50) not null")
-    @NotEmpty(message = "Name is required")
+    @NotBlank(message = "Name is required")
     @Length(max = 50, min = 5, message = "Length is between 5 and 50")
     private String name;
 
