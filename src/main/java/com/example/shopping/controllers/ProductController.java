@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.shopping.entities.Product;
-import com.example.shopping.exception.CategoryNotFoundException;
-import com.example.shopping.exception.ProductNotFoundException;
+import com.example.shopping.exception.ResourceNotFoundException;
 import com.example.shopping.services.ProductService;
 
 @RestController
@@ -25,13 +24,13 @@ public class ProductController {
   private ProductService productService;
 
   @PostMapping()
-  public ResponseEntity<Product> add(@RequestBody @Valid Product product)  throws ProductNotFoundException, CategoryNotFoundException {
+  public ResponseEntity<Product> add(@RequestBody @Valid Product product)  throws ResourceNotFoundException {
     var newProd = productService.save(product);
     return new ResponseEntity<>(newProd, HttpStatus.CREATED) ;
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Product> findById(@PathVariable Long id) throws ProductNotFoundException {
+  public ResponseEntity<Product> findById(@PathVariable Long id) throws ResourceNotFoundException {
     var prod = productService.findById(id);
     return ResponseEntity.ok(prod) ;
   }
