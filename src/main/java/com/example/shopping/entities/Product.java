@@ -36,7 +36,7 @@ public class Product {
 
     @NotBlank(message = "Name is required")
     @Length(max = 50, min = 5, message = "Length is between 5 and 50")
-    @Column(length = 50, unique = true, columnDefinition = "nvarchar(50) not null")
+    @Column(length = 50, columnDefinition = "nvarchar(50) not null")
     private String name;
 
     @NotNull

@@ -26,4 +26,6 @@ public class ErrorCodes {
    * Error code for Constraint check exceptions
    */
   public static final int ERR_CONSTRAINT_CHECK_FAILED = 1040;
+
+  public static final int ERR_DUPLICATED = 1050;
 }

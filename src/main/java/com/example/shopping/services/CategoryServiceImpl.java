@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.shopping.entities.Category;
+import com.example.shopping.exception.DuplicatedException;
 import com.example.shopping.repositories.CategoryRepository;
 
 @Service
@@ -16,6 +17,10 @@ public class CategoryServiceImpl implements CategoryService {
 
   @Override
   public Category save(Category cat) {
+    var isExisted = !categoryRepository.findByName(cat.getName()).isEmpty();
+    if(isExisted){
+      throw new DuplicatedException("Duplicated Name");
+    }
     return categoryRepository.save(cat);
   }
 

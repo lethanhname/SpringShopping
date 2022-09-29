@@ -1,6 +1,7 @@
 package com.example.shopping.controllers;
 
 import javax.validation.ConstraintViolationException;
+import javax.validation.ValidationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.example.shopping.constants.ErrorCodes;
+import com.example.shopping.exception.DuplicatedException;
 import com.example.shopping.exception.ErrorMessage;
 import com.example.shopping.exception.ErrorResponse;
 import com.example.shopping.exception.ResourceNotFoundException;
@@ -52,6 +54,22 @@ public class ExceptionHandlerController {
       new ErrorMessage(
         ErrorCodes.ERR_RESOURCE_NOT_FOUND,
         "Resource not found",
+        exception.getMessage()));
+
+    return response;
+  }
+
+  @ExceptionHandler(DuplicatedException.class)
+  @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+  @ResponseBody
+  public ErrorResponse onValidation(DuplicatedException exception, WebRequest request) {
+    log.error(String.format("resource found exception occurred: %s ", exception.getMessage()));
+
+    ErrorResponse response = new ErrorResponse();
+    response.getErrors().add(
+      new ErrorMessage(
+        ErrorCodes.ERR_DUPLICATED,
+        "Duplicated",
         exception.getMessage()));
 
     return response;
