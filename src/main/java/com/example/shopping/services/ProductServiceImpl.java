@@ -1,9 +1,16 @@
 package com.example.shopping.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.example.shopping.exception.ResourceNotFoundException;
+import com.example.shopping.filters.FilterCondition;
+import com.example.shopping.filters.GenericFilterCriteriaBuilder;
 import com.example.shopping.entities.Product;
 import com.example.shopping.repositories.CategoryRepository;
 import com.example.shopping.repositories.ProductRepository;
@@ -17,6 +24,9 @@ public class ProductServiceImpl implements ProductService{
 
   @Autowired
   private ProductRepository productRepository;
+
+  @Autowired
+  private GenericFilterCriteriaBuilder specBuilder;
 
   @Override
   public Product save(Product product) throws ResourceNotFoundException {
@@ -41,5 +51,12 @@ public class ProductServiceImpl implements ProductService{
     var product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
     return product;
   }
-  
+  @Override
+	public Page<Product> findAll(Pageable pageable, List<FilterCondition> filters) {
+    if(filters == null || filters.isEmpty()){
+      return productRepository.findAll(pageable);
+    }
+		Specification<Product> spec = specBuilder.getSpecificationFromFilters(filters);
+		return productRepository.findAll(spec, pageable);
+	}
 }
