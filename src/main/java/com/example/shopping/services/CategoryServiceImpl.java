@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.shopping.dtos.CategoryMapper;
+import com.example.shopping.dtos.CategoryUpdateRequest;
 import com.example.shopping.entities.Category;
 import com.example.shopping.exception.DuplicatedException;
 import com.example.shopping.repositories.CategoryRepository;
@@ -15,8 +17,11 @@ public class CategoryServiceImpl implements CategoryService {
   @Autowired
   private CategoryRepository categoryRepository;
 
+  @Autowired
+  private CategoryMapper categoryMapper;
+
   @Override
-  public Category save(Category cat) {
+  public Category create(Category cat) {
     var isExisted = !categoryRepository.findByName(cat.getName()).isEmpty();
     if(isExisted){
       throw new DuplicatedException("Duplicated Name");
@@ -32,6 +37,22 @@ public class CategoryServiceImpl implements CategoryService {
   @Override
   public Category findById(Long id) {
     return categoryRepository.findById(id).get();
+  }
+
+  @Override
+  public Category update(Long id, CategoryUpdateRequest request) {
+    var cats = categoryRepository.findByName(request.getName());
+    if(!cats.isEmpty() && cats.stream().filter(i -> i.getId() != id).findFirst().orElse(null) != null){
+      throw new DuplicatedException("Duplicated Name");
+    }
+    var cat = findById(id);
+    categoryMapper.updateEntity(request, cat);
+    return categoryRepository.save(cat);
+  }
+
+  @Override
+  public void delete(Long id) {
+    categoryRepository.deleteById(id);
   }
   
 }
