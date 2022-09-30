@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.example.shopping.exception.ResourceNotFoundException;
 import com.example.shopping.filters.FilterCondition;
 import com.example.shopping.filters.GenericFilterCriteriaBuilder;
+import com.example.shopping.dtos.ProductMapper;
+import com.example.shopping.dtos.ProductUpdateRequest;
 import com.example.shopping.entities.Product;
 import com.example.shopping.repositories.CategoryRepository;
 import com.example.shopping.repositories.ProductRepository;
@@ -28,8 +30,11 @@ public class ProductServiceImpl implements ProductService{
   @Autowired
   private GenericFilterCriteriaBuilder specBuilder;
 
+  @Autowired
+  private ProductMapper productMapper;
+
   @Override
-  public Product save(Product product) throws ResourceNotFoundException {
+  public Product create(Product product) throws ResourceNotFoundException {
     var cat = product.getCategory();
     if(cat == null){
       throw new ResourceNotFoundException("Category not found");
@@ -59,4 +64,16 @@ public class ProductServiceImpl implements ProductService{
 		Specification<Product> spec = specBuilder.getSpecificationFromFilters(filters);
 		return productRepository.findAll(spec, pageable);
 	}
+
+  @Override
+  public Product update(Long id, ProductUpdateRequest request) throws ResourceNotFoundException {
+    var product = findById(id);
+    productMapper.updateEntity(request, product);
+    return productRepository.save(product);
+  }
+
+  @Override
+  public void delete(Long id) throws ResourceNotFoundException {
+    productRepository.deleteById(id);
+  }
 }

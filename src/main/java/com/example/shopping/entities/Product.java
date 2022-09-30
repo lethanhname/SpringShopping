@@ -61,7 +61,7 @@ public class Product {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedDate;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "categoryId")
     @NotNull(message = "Category is required")
     private Category category;
