@@ -1,6 +1,6 @@
 package com.example.shopping.entities;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +17,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -48,9 +47,9 @@ public class Category {
     @Temporal(TemporalType.DATE)
     private Date updatedDate;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Set<Product> products;
+    private List<Product> products;
 
     @PrePersist
     public void preCreate(){
