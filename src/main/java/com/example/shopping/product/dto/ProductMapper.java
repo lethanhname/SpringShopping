@@ -1,9 +1,9 @@
-package com.example.shopping.dtos;
+package com.example.shopping.product.dto;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import com.example.shopping.entities.Product;
+import com.example.shopping.product.entities.Product;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {

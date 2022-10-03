@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.shopping.dtos.CategoryUpdateRequest;
-import com.example.shopping.entities.Category;
-import com.example.shopping.services.CategoryService;
+import com.example.shopping.product.dto.CategoryUpdateRequest;
+import com.example.shopping.product.entities.Category;
+import com.example.shopping.product.services.CategoryService;
 
 @RestController
 @RequestMapping("api/v1/categories")

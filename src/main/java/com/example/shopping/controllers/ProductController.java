@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.shopping.dtos.ProductUpdateRequest;
-import com.example.shopping.entities.Product;
 import com.example.shopping.exception.ResourceNotFoundException;
 import com.example.shopping.filters.FilterBuilderService;
 import com.example.shopping.filters.FilterCondition;
-import com.example.shopping.services.ProductService;
+import com.example.shopping.product.dto.ProductUpdateRequest;
+import com.example.shopping.product.entities.Product;
+import com.example.shopping.product.services.ProductService;
 
 
 @RestController

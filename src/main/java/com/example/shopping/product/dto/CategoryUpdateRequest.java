@@ -1,4 +1,4 @@
-package com.example.shopping.dtos;
+package com.example.shopping.product.dto;
 
 import javax.validation.constraints.NotBlank;
 

@@ -1,15 +1,15 @@
-package com.example.shopping.services;
+package com.example.shopping.product.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.shopping.dtos.CategoryMapper;
-import com.example.shopping.dtos.CategoryUpdateRequest;
-import com.example.shopping.entities.Category;
 import com.example.shopping.exception.DuplicatedException;
-import com.example.shopping.repositories.CategoryRepository;
+import com.example.shopping.product.dto.CategoryMapper;
+import com.example.shopping.product.dto.CategoryUpdateRequest;
+import com.example.shopping.product.entities.Category;
+import com.example.shopping.product.repositories.CategoryRepository;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {

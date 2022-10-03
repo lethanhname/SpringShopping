@@ -1,4 +1,4 @@
-package com.example.shopping.services;
+package com.example.shopping.product.services;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import com.example.shopping.exception.ResourceNotFoundException;
 import com.example.shopping.filters.FilterCondition;
 import com.example.shopping.filters.GenericFilterCriteriaBuilder;
-import com.example.shopping.dtos.ProductMapper;
-import com.example.shopping.dtos.ProductUpdateRequest;
-import com.example.shopping.entities.Product;
-import com.example.shopping.repositories.CategoryRepository;
-import com.example.shopping.repositories.ProductRepository;
+import com.example.shopping.product.dto.ProductMapper;
+import com.example.shopping.product.dto.ProductUpdateRequest;
+import com.example.shopping.product.entities.Product;
+import com.example.shopping.product.repositories.CategoryRepository;
+import com.example.shopping.product.repositories.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService{

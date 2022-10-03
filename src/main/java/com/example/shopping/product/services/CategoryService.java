@@ -1,9 +1,9 @@
-package com.example.shopping.services;
+package com.example.shopping.product.services;
 
 import java.util.List;
 
-import com.example.shopping.dtos.CategoryUpdateRequest;
-import com.example.shopping.entities.Category;
+import com.example.shopping.product.dto.CategoryUpdateRequest;
+import com.example.shopping.product.entities.Category;
 
 public interface CategoryService {
   public Category create(Category cat);

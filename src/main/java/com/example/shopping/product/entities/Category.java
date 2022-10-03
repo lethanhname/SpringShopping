@@ -1,4 +1,4 @@
-package com.example.shopping.entities;
+package com.example.shopping.product.entities;
 import java.util.Date;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.shopping.entities;
+package com.example.shopping.product.entities;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
-import com.example.shopping.constants.ProductStatus;
+import com.example.shopping.product.ProductStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;

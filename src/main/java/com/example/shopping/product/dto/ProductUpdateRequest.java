@@ -1,11 +1,11 @@
-package com.example.shopping.dtos;
+package com.example.shopping.product.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.example.shopping.constants.ProductStatus;
+import com.example.shopping.product.ProductStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
